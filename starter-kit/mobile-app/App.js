@@ -36,7 +36,7 @@ const DonationsStackOptions = ({ navigation }) => {
   return ({
     headerRight: () => (
       <Button
-        onPress={() => navigation.navigate('Add Donation')}
+        onPress={() => navigation.navigate('Add Playhome')}
         title='Add '
       />
     )
@@ -66,14 +66,14 @@ const TabLayout = () => (
       }}
     />
     <Tab.Screen
-      name='Donate'
+      name='Add Playhome'
       component={DonateStackLayout}
       options={{
         tabBarIcon: ({color}) => (<DonateIcon fill={color} />)
       }}
     />
     <Tab.Screen
-      name='Search'
+      name='Search Playhome'
       component={SearchStackLayout}
       options={{
         tabBarIcon: ({color}) => (<SearchIcon fill={color} />)
@@ -84,15 +84,15 @@ const TabLayout = () => (
 
 const DonateStackLayout = () => (
   <Stack.Navigator>
-  <Stack.Screen name='My Donations' component={MyResources} options={DonationsStackOptions} />
-    <Stack.Screen name='Add Donation' component={AddResource} />
-    <Stack.Screen name='Edit Donation' component={EditResource} />
+  <Stack.Screen name='My Playhome' component={MyResources} options={DonationsStackOptions} />
+    <Stack.Screen name='Add Playhome' component={AddResource} />
+    <Stack.Screen name='Edit Playhome' component={EditResource} />
   </Stack.Navigator>
 );
 
 const SearchStackLayout = () => (
   <Stack.Navigator>
-    <Stack.Screen name='Search Resources' component={SearchResources} options={ResourcesStackOptions} />
+    <Stack.Screen name='Search Playhomes' component={SearchResources} options={ResourcesStackOptions} />
     <Stack.Screen name='Chat' component={Chat} />
     <Stack.Screen name='Map' component={Map} />
   </Stack.Navigator>

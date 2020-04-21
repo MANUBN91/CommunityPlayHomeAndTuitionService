@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
 });
 
 const EditResource = (props) => {
-  const clearItem = { userID: userID(), e: 'Food', name: '', description: '', location: '', contact: '', quantity: '1' }
+  const clearItem = { userID: userID(), e: 'Playhome', name: '', description: '', location: '', contact: '', quantity: '1' }
   const [item, setItem] = React.useState(clearItem);
   const [useLocation, setUseLocation] = React.useState(false);
   const [position, setPosition] = React.useState({})
@@ -124,7 +124,7 @@ const EditResource = (props) => {
 
     update(payload)
       .then(() => {
-        Alert.alert('Done', 'Your item has been updated.', [{text: 'OK'}]);
+        Alert.alert('Done', 'Your details has been updated.', [{text: 'OK'}]);
         props.navigation.goBack();
       })
       .catch(err => {
@@ -171,8 +171,8 @@ const EditResource = (props) => {
             value={item.type}
             onValueChange={(t) => setItem({ ...item, type: t })}
             items={[
-                { label: 'Food', value: 'Food' },
-                { label: 'Help', value: 'Help' },
+                { label: 'Playhome', value: 'Food' },
+                { label: 'Tuition', value: 'Help' },
                 { label: 'Other', value: 'Other' }
             ]}
           />
@@ -200,7 +200,7 @@ const EditResource = (props) => {
         onSubmitEditing={updateItem}
         returnKeyType='send'
         enablesReturnKeyAutomatically={true}
-        placeholder='e.g., Tomotatoes'
+        placeholder=''
         blurOnSubmit={false}
       />
       <Text style={styles.label}>Contact</Text>
@@ -211,7 +211,7 @@ const EditResource = (props) => {
         onSubmitEditing={updateItem}
         returnKeyType='send'
         enablesReturnKeyAutomatically={true}
-        placeholder='user@domain.com'
+        placeholder=''
       />
       <Text style={styles.label}>Description</Text>
       <TextInput
@@ -221,7 +221,7 @@ const EditResource = (props) => {
         onSubmitEditing={updateItem}
         returnKeyType='send'
         enablesReturnKeyAutomatically={true}
-        placeholder='e.g., small baskets of cherry tomatoes'
+        placeholder=''
       />
       <Text style={styles.label}>Location</Text>
       <View style={styles.checkboxContainer}>
@@ -243,7 +243,7 @@ const EditResource = (props) => {
         onSubmitEditing={updateItem}
         returnKeyType='send'
         enablesReturnKeyAutomatically={true}
-        placeholder='street address, city, state'
+        placeholder=''
       />
 
       {

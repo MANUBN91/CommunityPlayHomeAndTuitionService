@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
 });
 
 const SearchResources = function ({ route, navigation }) {
-  const [query, setQuery] = React.useState({ type: 'Food', name: '' });
+  const [query, setQuery] = React.useState({ type: 'Playhome', name: '' });
   const [items, setItems] = React.useState([]);
   const [info, setInfo] = React.useState('');
 
@@ -122,8 +122,8 @@ const SearchResources = function ({ route, navigation }) {
           value={query.type}
           onValueChange={(t) => setQuery({ ...query, type: t })}
           items={[
-              { label: 'Food', value: 'Food' },
-              { label: 'Help', value: 'Help' },
+              { label: 'Playhome', value: 'Food' },
+              { label: 'Tuition', value: 'Help' },
               { label: 'Other', value: 'Other' }
           ]}
         />
@@ -135,7 +135,7 @@ const SearchResources = function ({ route, navigation }) {
           onSubmitEditing={searchItem}
           returnKeyType='send'
           enablesReturnKeyAutomatically={true}
-          placeholder='e.g., Tomotatoes'
+          placeholder=''
           blurOnSubmit={false}
         />
         <TouchableOpacity onPress={searchItem}>

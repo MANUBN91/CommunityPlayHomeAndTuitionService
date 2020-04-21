@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
 });
 
 const AddResource = function ({ navigation }) {
-  const clearItem = { userID: userID(), type: 'Food', name: '', description: '', location: '', contact: '', quantity: '1' }
+  const clearItem = { userID: userID(), type: 'Playhome', name: '', description: '', location: '', contact: '', quantity: '1' }
   const [item, setItem] = React.useState(clearItem);
   const [useLocation, setUseLocation] = React.useState(true);
   const [position, setPosition] = React.useState({})
@@ -113,7 +113,7 @@ const AddResource = function ({ navigation }) {
 
     add(payload)
       .then(() => {
-        Alert.alert('Thank you!', 'Your item has been added.', [{text: 'OK'}]);
+        Alert.alert('Thank you!', 'Your details has been added.', [{text: 'OK'}]);
         setItem({ ...clearItem, location: payload.location });
       })
       .catch(err => {
@@ -132,14 +132,14 @@ const AddResource = function ({ navigation }) {
             value={item.type}
             onValueChange={(t) => setItem({ ...item, type: t })}
             items={[
-                { label: 'Food', value: 'Food' },
-                { label: 'Help', value: 'Help' },
+                { label: 'Playhome', value: 'Food' },
+                { label: 'Tution', value: 'Help' },
                 { label: 'Other', value: 'Other' }
             ]}
           />
         </View>
         <View style={styles.quantityArea}>
-          <Text style={styles.label}>Quantity</Text>
+          <Text style={styles.label}>No of Kids</Text>
           <TextInput
             style={styles.textInput}
             value={item.quantity}
@@ -161,10 +161,10 @@ const AddResource = function ({ navigation }) {
         onSubmitEditing={sendItem}
         returnKeyType='send'
         enablesReturnKeyAutomatically={true}
-        placeholder='e.g., Tomotatoes'
+        placeholder='e.g., XYZ'
         blurOnSubmit={false}
       />
-      <Text style={styles.label}>Contact</Text>
+      <Text style={styles.label}>Contact Address</Text>
       <TextInput
         style={styles.textInput}
         value={item.contact}
@@ -174,7 +174,7 @@ const AddResource = function ({ navigation }) {
         enablesReturnKeyAutomatically={true}
         placeholder='user@domain.com'
       />
-      <Text style={styles.label}>Description</Text>
+      <Text style={styles.label}>Fee details and Description</Text>
       <TextInput
         style={styles.textInput}
         value={item.description}
@@ -182,9 +182,9 @@ const AddResource = function ({ navigation }) {
         onSubmitEditing={sendItem}
         returnKeyType='send'
         enablesReturnKeyAutomatically={true}
-        placeholder='e.g., cans of tomatoes'
+        placeholder=''
       />
-      <Text style={styles.label}>Location</Text>
+      <Text style={styles.label}>My Location</Text>
       <View style={styles.checkboxContainer}>
         <TouchableOpacity onPress={toggleUseLocation}>
           {

@@ -1,5 +1,5 @@
 applications:
-- name: solution-starter-kit-cooperation-2020-server
+- name: community-playhome-service
   command: npm start
   path: .
   memory: 256M
