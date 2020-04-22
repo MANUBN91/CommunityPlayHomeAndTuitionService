@@ -176,8 +176,8 @@ const EditResource = (props) => {
             value={item.type}
             onValueChange={(t) => setItem({ ...item, type: t })}
             items={[
-              { label: 'Playhome', value: 'Food' },
-              { label: 'Tuition', value: 'Help' },
+              { label: 'Playhome', value: 'Playhome' },
+              { label: 'Tuition', value: 'Tuition' },
               { label: 'Other', value: 'Other' }
             ]}
           />
