@@ -1,6 +1,16 @@
 import React from 'react';
-import { StyleSheet, KeyboardAvoidingView, ScrollView, View, Text, TextInput, Button, TouchableOpacity, Linking } from 'react-native';
-
+import {
+  StyleSheet,
+  KeyboardAvoidingView,
+  ScrollView,
+  View,
+  Text,
+  TextInput,
+  Button,
+  TouchableOpacity,
+  Linking,
+  ImageBackground
+} from 'react-native';
 import { session, message } from '../lib/utils';
 
 const styles = StyleSheet.create({
@@ -36,13 +46,13 @@ const styles = StyleSheet.create({
   },
   myText: {
     fontFamily: 'IBMPlexSans-Medium',
-    backgroundColor: '#F1F0EE',
+    backgroundColor: '#e6f2ff',
     padding: 10,
     alignSelf: 'flex-end',
     maxWidth: '80%'
   },
   inputContainer: {
-    backgroundColor: '#F1F0EE',
+    backgroundColor: '#e6f2ff',
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
@@ -55,7 +65,8 @@ const styles = StyleSheet.create({
     padding: 16,
     elevation: 2,
     paddingRight: 70,
-    marginBottom: 25
+    marginBottom: 25,
+    color: '#5c5cd6'
   },
   submitButton: {
     fontFamily: 'IBMPlexSans-Medium',
@@ -70,7 +81,14 @@ const styles = StyleSheet.create({
   },
   chatText: {
     fontFamily: 'IBMPlexSans-Medium'
-  }
+  },
+  image: {
+    flex: 1,
+    resizeMode: "center",
+    backgroundColor: 'transparent',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 const Chat = function ({ navigation }) {
@@ -109,14 +127,14 @@ const Chat = function ({ navigation }) {
       return <MailLink {...props} />
     }
   };
-  
+
   const Message = (props) => {
     const style = props.fromInput ? styles.myText : styles.waText;
     return (
       <View style={styles.messageContainer}>
         <View style={style}>
           <Text style={styles.chatText}>{props.text}</Text>
-          { props.resources.map((resource, i) => {
+          {props.resources.map((resource, i) => {
             resource.key = `sup-${(new Date()).getTime()}-${i}`;
             return <Resource {...resource} />
           })}
@@ -197,35 +215,38 @@ const Chat = function ({ navigation }) {
 
   return (
     <View style={styles.outerContainer}>
-      <KeyboardAvoidingView
-        style={styles.innerContainer}
-        behavior='height'
-        keyboardVerticalOffset={Platform.select({
-          ios: 78,
-          android: 0
-        })} >
-        <ScrollView contentContainerStyle={styles.scrollContainer}>
-          {messages.map((msg, i) => {
-            msg.key = `msg-${(new Date()).getTime()}-${i}`;
-            return <Message {...msg} />
-          })}
-        </ScrollView>
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.textInput}
-            value={input}
-            onChangeText={setInput}
-            onSubmitEditing={sendMessage}
-            returnKeyType='send'
-            enablesReturnKeyAutomatically={true}
-            placeholder='Ask a question...'
-            blurOnSubmit={false}
-          />
-          <View style={styles.submitButton}>
-            {input !== '' && <Button title='Send' onPress={sendMessage} />}
+      <ImageBackground source={require('../images/playhome-3.jpg')} imageStyle={{ opacity: .3 }} style={styles.image}>
+
+        <KeyboardAvoidingView
+          style={styles.innerContainer}
+          behavior='height'
+          keyboardVerticalOffset={Platform.select({
+            ios: 78,
+            android: 0
+          })} >
+          <ScrollView contentContainerStyle={styles.scrollContainer}>
+            {messages.map((msg, i) => {
+              msg.key = `msg-${(new Date()).getTime()}-${i}`;
+              return <Message {...msg} />
+            })}
+          </ScrollView>
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.textInput}
+              value={input}
+              onChangeText={setInput}
+              onSubmitEditing={sendMessage}
+              returnKeyType='send'
+              enablesReturnKeyAutomatically={true}
+              placeholder='Ask a question...'
+              blurOnSubmit={false}
+            />
+            <View style={styles.submitButton}>
+              {input !== '' && <Button title='Send' onPress={sendMessage} />}
+            </View>
           </View>
-        </View>
-      </KeyboardAvoidingView>
+        </KeyboardAvoidingView>
+      </ImageBackground>
     </View>
   );
 };

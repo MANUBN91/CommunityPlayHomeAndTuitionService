@@ -1,77 +1,72 @@
 import React from 'react';
-import { StyleSheet, View, Image, Text, TouchableOpacity, Button, Linking } from 'react-native';
+import { StyleSheet, View, ImageBackground, Text } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 const styles = StyleSheet.create({
   center: {
     flex: 1,
-    flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    backgroundColor: '#FFFFFF'
-  },
-  scroll: {
-    paddingLeft: 20,
-    paddingRight: 20,
-    paddingBottom: 25,
-    paddingTop: 75
-  },
-  image: {
-    alignSelf: 'flex-start',
-    height: '20%',
-    width:'50%',
-    resizeMode: 'contain'
   },
   title: {
     fontFamily: 'IBMPlexSans-Medium',
     fontSize: 36,
-    color: '#323232',
-    paddingBottom: 15
+    color: '#00004d',
+    paddingBottom: 20,
+    paddingTop: 20,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    width: '100%',
+    paddingHorizontal: 0,
+    marginHorizontal: 0
   },
   subtitle: {
     fontFamily: 'IBMPlexSans-Light',
-    fontSize: 28,
-    color: '#323232',
-    textDecorationColor: '#D0E2FF',
+    fontSize: 26,
+    color: '#ffffff',
     textDecorationLine: 'underline',
-    paddingBottom: 5,
-    paddingTop: 20
+    paddingBottom: 15,
+    paddingTop: 10,
+    paddingLeft: 140,
+    textAlign: 'right',
+    paddingRight: 10,
+    fontWeight: 'bold',
   },
   content: {
     fontFamily: 'IBMPlexSans-Light',
-    color: '#323232',
-    marginTop: 10,
-    marginBottom: 10,
-    fontSize: 26
+    color: '#cc3300',
+    marginTop: 20,
+    marginBottom: 35,
+    fontSize: 18,
+    marginLeft: 140,
+    textAlign: 'right',
+    paddingRight: 10,
+    fontWeight: 'bold',
   },
-  buttonGroup: {
+  image: {
     flex: 1,
-    paddingTop: 15,
-    width: 175
+    resizeMode: "center",
+    backgroundColor: 'transparent',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 50,
   },
-  button: {
-    backgroundColor: '#1062FE',
-    color: '#FFFFFF',
-    fontFamily: 'IBMPlexSans-Medium',
-    fontSize: 16,
-    overflow: 'hidden',
-    padding: 12,
-    textAlign:'center',
-    marginTop: 15
-  }
 });
 
 const Home = () => (
-  <View style={styles.center}>
-    <ScrollView style={styles.scroll}>
-      
-      <Text style={styles.subtitle}>Technical Knockouts</Text>
-      <Text style={styles.title}>Welcome to Community Playhome Service App</Text>
-      <Text style={styles.content}>
-      Lets make the life of working professionals working from home a little easier by engaging their kids.
+  <ImageBackground source={require('../images/playhome-1.jpg')} imageStyle={{ opacity: 0.5 }} style={styles.image}>
+    <ScrollView style={styles.outerView}>
+      <View style={styles.center}>
+        <Text style={styles.title}>Team Knockout</Text>
+        <Text style={styles.subtitle}>
+          Welcome to Community Play Home Service.
       </Text>
+        <Text style={styles.content}>
+          Let's make the life of working professionals working from home a little easier by engaging their kids.
+      </Text>
+      </View>
     </ScrollView>
-  </View>
+  </ImageBackground>
 );
 
 export default Home;

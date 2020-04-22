@@ -1,11 +1,12 @@
 import React from 'react';
-import { StyleSheet, FlatList, View, Text, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, FlatList, View, Text, TouchableOpacity, Alert, ImageBackground } from 'react-native';
 
 import { search, userID } from '../lib/utils'
 
 const styles = StyleSheet.create({
   flatListView: {
-    backgroundColor: '#FFF'
+    backgroundColor: 'rgba(255, 255, 255, 0)',
+    width: '100%'
   },
   itemTouchable: {
     flexDirection: 'column',
@@ -13,7 +14,16 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'stretch',
     borderBottomColor: '#dddddd',
-    borderBottomWidth: 0.25
+    borderBottomWidth: 0.25,
+    backgroundColor: '#e6f2ff',
+    shadowColor: '#000',
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+    elevation: 5,
+    margin: 5,
+    marginBottom: 0,
+    borderRadius: 15
   },
   itemView: {
     flexDirection: 'row',
@@ -33,17 +43,28 @@ const styles = StyleSheet.create({
     fontFamily: 'IBMPlexSans-Medium',
     color: 'gray'
   },
-  emptyListView: {
+  /* emptyListView: {
     backgroundColor: '#FFFFFF',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
-  },
+  }, */
   emptyListText: {
     fontFamily: 'IBMPlexSans-Bold',
-    color: '#999999',
-    fontSize: 16
-  }
+    color: '#fff',
+    fontSize: 28,
+    textAlign: 'center',
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 5
+  },
+  image: {
+    flex: 1,
+    resizeMode: "center",
+    backgroundColor: 'transparent',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 const MyResources = function ({ navigation }) {
@@ -55,7 +76,7 @@ const MyResources = function ({ navigation }) {
         .then(setItems)
         .catch(err => {
           console.log(err);
-          Alert.alert('ERROR', 'Please try again. If the problem persists contact an administrator.', [{text: 'OK'}]);
+          Alert.alert('ERROR', 'Please try again. If the problem persists contact an administrator.', [{ text: 'OK' }]);
         });
     })
   }, []);
@@ -63,7 +84,7 @@ const MyResources = function ({ navigation }) {
   const Item = (props) => {
     return (
       <TouchableOpacity style={styles.itemTouchable}
-          onPress={() => { navigation.navigate('Edit Playhome', { item: props }); }}>
+        onPress={() => { navigation.navigate('Edit Playhome', { item: props }); }}>
         <View style={styles.itemView}>
           <Text style={styles.itemName}>{props.name}</Text>
           <Text style={styles.itemQuantity}> ( {props.quantity} ) </Text>
@@ -72,20 +93,24 @@ const MyResources = function ({ navigation }) {
       </TouchableOpacity>
     );
   };
-  
+
   if (items.length > 0) {
     return (
-      <FlatList style={styles.flatListView}
-        data={items}
-        renderItem={({ item }) => <Item {...item} />}
-        keyExtractor={item => item.id || item['_id']}
-      />
+      <ImageBackground source={require('../images/playhome-2.jpg')} imageStyle={{ opacity: 0.75 }} style={styles.image}>
+        <FlatList style={styles.flatListView}
+          data={items}
+          renderItem={({ item }) => <Item {...item} />}
+          keyExtractor={item => item.id || item['_id']}
+        />
+      </ImageBackground>
     )
   } else {
     return (
-      <View style={styles.emptyListView}>
-        <Text style={styles.emptyListText}>You currently have no Playhome listed</Text>
-      </View>
+      <ImageBackground source={require('../images/playhome-2.jpg')} imageStyle={{ opacity: 0.75 }} style={styles.image}>
+        <View style={styles.emptyListView}>
+          <Text style={styles.emptyListText}>You currently have no Playhomes listed</Text>
+        </View>
+      </ImageBackground>
     )
   }
 };

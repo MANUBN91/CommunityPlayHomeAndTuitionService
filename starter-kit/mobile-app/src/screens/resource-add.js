@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   outerView: {
     flex: 1,
     padding: 22,
-    backgroundColor: '#FFF'
+    backgroundColor: '#e6f2ff'
   },
   splitView: {
     flexDirection: 'row',
@@ -31,7 +31,9 @@ const styles = StyleSheet.create({
     borderColor: '#D0E2FF',
     borderWidth: 2,
     padding: 16,
-    marginBottom: 25
+    marginBottom: 25,
+    backgroundColor: '#fff',
+    color: '#5c5cd6'
   },
   quantityArea: {
     width: '40%'
@@ -43,7 +45,9 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     padding: 14,
     elevation: 2,
-    marginBottom: 25
+    marginBottom: 25,
+    backgroundColor: '#fff',
+    color: '#5c5cd6'
   },
   checkboxContainer: {
     flexDirection: 'row',
@@ -70,7 +74,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     overflow: 'hidden',
     padding: 12,
-    textAlign:'center',
+    textAlign: 'center',
     marginTop: 15
   }
 });
@@ -113,15 +117,15 @@ const AddResource = function ({ navigation }) {
 
     add(payload)
       .then(() => {
-        Alert.alert('Thank you!', 'Your details has been added.', [{text: 'OK'}]);
+        Alert.alert('Thank you!', 'Your details has been added.', [{ text: 'OK' }]);
         setItem({ ...clearItem, location: payload.location });
       })
       .catch(err => {
         console.log(err);
-        Alert.alert('ERROR', 'Please try again. If the problem persists contact an administrator.', [{text: 'OK'}]);
+        Alert.alert('ERROR', 'Please try again. If the problem persists contact an administrator.', [{ text: 'OK' }]);
       });
   };
-  
+
   return (
     <ScrollView style={styles.outerView}>
       <View style={styles.splitView}>
@@ -132,9 +136,9 @@ const AddResource = function ({ navigation }) {
             value={item.type}
             onValueChange={(t) => setItem({ ...item, type: t })}
             items={[
-                { label: 'Playhome', value: 'Food' },
-                { label: 'Tution', value: 'Help' },
-                { label: 'Other', value: 'Other' }
+              { label: 'Playhome', value: 'Food' },
+              { label: 'Tution', value: 'Help' },
+              { label: 'Other', value: 'Other' }
             ]}
           />
         </View>
@@ -143,7 +147,7 @@ const AddResource = function ({ navigation }) {
           <TextInput
             style={styles.textInput}
             value={item.quantity}
-            onChangeText={(t) => setItem({ ...item, quantity: t})}
+            onChangeText={(t) => setItem({ ...item, quantity: t })}
             onSubmitEditing={sendItem}
             returnKeyType='send'
             enablesReturnKeyAutomatically={true}
@@ -157,7 +161,7 @@ const AddResource = function ({ navigation }) {
       <TextInput
         style={styles.textInput}
         value={item.name}
-        onChangeText={(t) => setItem({ ...item, name: t})}
+        onChangeText={(t) => setItem({ ...item, name: t })}
         onSubmitEditing={sendItem}
         returnKeyType='send'
         enablesReturnKeyAutomatically={true}
@@ -168,7 +172,7 @@ const AddResource = function ({ navigation }) {
       <TextInput
         style={styles.textInput}
         value={item.contact}
-        onChangeText={(t) => setItem({ ...item, contact: t})}
+        onChangeText={(t) => setItem({ ...item, contact: t })}
         onSubmitEditing={sendItem}
         returnKeyType='send'
         enablesReturnKeyAutomatically={true}
@@ -178,7 +182,7 @@ const AddResource = function ({ navigation }) {
       <TextInput
         style={styles.textInput}
         value={item.description}
-        onChangeText={(t) => setItem({ ...item, description: t})}
+        onChangeText={(t) => setItem({ ...item, description: t })}
         onSubmitEditing={sendItem}
         returnKeyType='send'
         enablesReturnKeyAutomatically={true}
@@ -190,9 +194,9 @@ const AddResource = function ({ navigation }) {
           {
             (useLocation)
               ?
-              <CheckedIcon height='18' width='18'/>
+              <CheckedIcon height='18' width='18' />
               :
-              <UncheckedIcon height='18' width='18'/>
+              <UncheckedIcon height='18' width='18' />
           }
         </TouchableOpacity>
         <Text style={styles.checkboxLabel}> Use my current location </Text>
@@ -200,7 +204,7 @@ const AddResource = function ({ navigation }) {
       <TextInput
         style={useLocation ? styles.textInputDisabled : styles.textInput}
         value={item.location}
-        onChangeText={(t) => setItem({ ...item, location: t})}
+        onChangeText={(t) => setItem({ ...item, location: t })}
         onSubmitEditing={sendItem}
         returnKeyType='send'
         enablesReturnKeyAutomatically={true}

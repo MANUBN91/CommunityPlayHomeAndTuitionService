@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, FlatList, View, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, Text, TextInput, FlatList, View, TouchableOpacity, Alert, ImageBackground } from 'react-native';
 import PickerSelect from 'react-native-picker-select';
 
 import { search } from '../lib/utils';
@@ -11,9 +11,9 @@ const styles = StyleSheet.create({
     height: '100%'
   },
   inputsView: {
-    backgroundColor: '#F1F0EE',
+    backgroundColor: '#e6f2ff',
     padding: 16,
-    padding: 22,
+    width: '100%',
   },
   label: {
     fontFamily: 'IBMPlexSans-Medium',
@@ -25,13 +25,15 @@ const styles = StyleSheet.create({
     fontFamily: 'IBMPlexSans-Medium',
     backgroundColor: '#fff',
     padding: 8,
-    marginBottom: 10
+    marginBottom: 10,
+    color: '#5c5cd6'
   },
   textInput: {
     fontFamily: 'IBMPlexSans-Medium',
     backgroundColor: '#fff',
     padding: 8,
-    marginBottom: 10
+    marginBottom: 10,
+    color: '#5c5cd6'
   },
   button: {
     backgroundColor: '#1062FE',
@@ -40,16 +42,22 @@ const styles = StyleSheet.create({
     fontSize: 16,
     overflow: 'hidden',
     padding: 12,
-    textAlign:'center',
+    textAlign: 'center',
     marginTop: 15
   },
   searchResultText: {
     fontFamily: 'IBMPlexSans-Bold',
     padding: 10,
-    color: '#1062FE'
+    color: '#1062fe',
+    fontSize: 20,
+    width: '100%',
+    textShadowColor: 'rgba(255, 100, 50, 1)',
+    textShadowOffset: { width: 5, height: 5 },
+    textShadowRadius: 20
   },
   flatListView: {
-    backgroundColor: '#FFF'
+    backgroundColor: 'rgba(255, 255, 255, 0)',
+    width: '100%'
   },
   itemTouchable: {
     flexDirection: 'column',
@@ -57,7 +65,16 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'stretch',
     borderBottomColor: '#dddddd',
-    borderBottomWidth: 0.25
+    borderBottomWidth: 0.25,
+    backgroundColor: '#e6f2ff',
+    shadowColor: '#000',
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+    elevation: 5,
+    margin: 5,
+    marginBottom: 0,
+    borderRadius: 15
   },
   itemView: {
     flexDirection: 'row',
@@ -76,7 +93,14 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: 'IBMPlexSans-Medium',
     color: 'gray'
-  }
+  },
+  image: {
+    flex: 1,
+    resizeMode: "center",
+    backgroundColor: 'transparent',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 const SearchResources = function ({ route, navigation }) {
@@ -87,7 +111,7 @@ const SearchResources = function ({ route, navigation }) {
   const Item = (props) => {
     return (
       <TouchableOpacity style={styles.itemTouchable}
-          onPress={() => { navigation.navigate('Map', { item: props }); }}>
+        onPress={() => { navigation.navigate('Map', { item: props }); }}>
         <View style={styles.itemView}>
           <Text style={styles.itemName}>{props.name}</Text>
           <Text style={styles.itemQuantity}> ( {props.quantity} ) </Text>
@@ -104,52 +128,54 @@ const SearchResources = function ({ route, navigation }) {
 
     search(payload)
       .then((results) => {
-        setInfo(`${results.length} result(s)`)
+        setInfo(`${results.length} Result(s)`)
         setItems(results);
       })
       .catch(err => {
         console.log(err);
-        Alert.alert('ERROR', 'Please try again. If the problem persists contact an administrator.', [{text: 'OK'}]);
+        Alert.alert('ERROR', 'Please try again. If the problem persists contact an administrator.', [{ text: 'OK' }]);
       });
   };
 
   return (
     <View style={styles.outerView}>
-      <View style={styles.inputsView}>
-        <Text style={styles.label}>Type</Text>
-        <PickerSelect
-          style={{ inputIOS: styles.selector }}
-          value={query.type}
-          onValueChange={(t) => setQuery({ ...query, type: t })}
-          items={[
+      <ImageBackground source={require('../images/playhome-4.jpg')} imageStyle={{ opacity: .5 }} style={styles.image}>
+        <View style={styles.inputsView}>
+          <Text style={styles.label}>Type</Text>
+          <PickerSelect
+            style={{ inputIOS: styles.selector }}
+            value={query.type}
+            onValueChange={(t) => setQuery({ ...query, type: t })}
+            items={[
               { label: 'Playhome', value: 'Food' },
               { label: 'Tuition', value: 'Help' },
               { label: 'Other', value: 'Other' }
-          ]}
-        />
-        <Text style={styles.label}>Name</Text>
-        <TextInput
-          style={styles.textInput}
-          value={query.name}
-          onChangeText={(t) => setQuery({ ...query, name: t})}
-          onSubmitEditing={searchItem}
-          returnKeyType='send'
-          enablesReturnKeyAutomatically={true}
-          placeholder=''
-          blurOnSubmit={false}
-        />
-        <TouchableOpacity onPress={searchItem}>
-          <Text style={styles.button}>Search</Text>
-        </TouchableOpacity>
-      </View>
+            ]}
+          />
+          <Text style={styles.label}>Name</Text>
+          <TextInput
+            style={styles.textInput}
+            value={query.name}
+            onChangeText={(t) => setQuery({ ...query, name: t })}
+            onSubmitEditing={searchItem}
+            returnKeyType='send'
+            enablesReturnKeyAutomatically={true}
+            placeholder=''
+            blurOnSubmit={false}
+          />
+          <TouchableOpacity onPress={searchItem}>
+            <Text style={styles.button}>Search</Text>
+          </TouchableOpacity>
+        </View>
 
-      <Text style={styles.searchResultText}>{info}</Text>
+        <Text style={styles.searchResultText}>{info}</Text>
 
-      <FlatList style={styles.flatListView}
-        data={items}
-        renderItem={({ item }) => <Item {...item} />}
-        keyExtractor={item => item.id || item['_id']}
-      />
+        <FlatList style={styles.flatListView}
+          data={items}
+          renderItem={({ item }) => <Item {...item} />}
+          keyExtractor={item => item.id || item['_id']}
+        />
+      </ImageBackground>
     </View>
   );
 };
