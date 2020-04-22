@@ -43,12 +43,6 @@ const styles = StyleSheet.create({
     fontFamily: 'IBMPlexSans-Medium',
     color: 'gray'
   },
-  /* emptyListView: {
-    backgroundColor: '#FFFFFF',
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  }, */
   emptyListText: {
     fontFamily: 'IBMPlexSans-Bold',
     color: '#fff',

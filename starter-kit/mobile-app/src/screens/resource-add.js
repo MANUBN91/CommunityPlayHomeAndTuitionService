@@ -75,7 +75,8 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     padding: 12,
     textAlign: 'center',
-    marginTop: 15
+    marginTop: 15,
+    marginBottom: 50
   }
 });
 
@@ -136,8 +137,8 @@ const AddResource = function ({ navigation }) {
             value={item.type}
             onValueChange={(t) => setItem({ ...item, type: t })}
             items={[
-              { label: 'Playhome', value: 'Food' },
-              { label: 'Tution', value: 'Help' },
+              { label: 'Playhome', value: 'Playhome' },
+              { label: 'Tution', value: 'Tution' },
               { label: 'Other', value: 'Other' }
             ]}
           />
