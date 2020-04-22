@@ -22,7 +22,7 @@ const Map = (props) => {
 
     if (message.status && message.status === 'initialized') {
       Geolocation.getCurrentPosition((position) => {
-        sendMessage(position);
+        // sendMessage(position);
       });
 
       if (props.route.params && props.route.params.item) {
@@ -35,13 +35,13 @@ const Map = (props) => {
         })
         .catch(err => {
           console.log(err)
-          Alert.alert('ERROR', 'Please try again. If the problem persists contact an administrator.', [{text: 'OK'}]);
+          Alert.alert('ERROR', 'Please try again. If the problem persists contact an administrator.', [{ text: 'OK' }]);
         });
     }
   };
 
   const sendMessage = (data) => {
-    const message = 
+    const message =
       `(function() {
         document.dispatchEvent(new MessageEvent('message', {data: ${JSON.stringify(data)}}));
       })()`;
@@ -60,7 +60,7 @@ const Map = (props) => {
 
   return (
     <View style={styles.mapContainer}>
-      <WebView          
+      <WebView
         injectedJavaScript={injectedJS}
         source={{ uri: sourceUri }}
         javaScriptEnabled={true}
