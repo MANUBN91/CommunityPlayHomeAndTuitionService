@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   outerView: {
     flex: 1,
     padding: 22,
-    backgroundColor: '#FFF'
+    backgroundColor: '#e6f2ff'
   },
   splitView: {
     flexDirection: 'row',
@@ -31,7 +31,9 @@ const styles = StyleSheet.create({
     borderColor: '#D0E2FF',
     borderWidth: 2,
     padding: 16,
-    marginBottom: 25
+    marginBottom: 25,
+    color: '#5c5cd6',
+    backgroundColor: '#fff'
   },
   quantityArea: {
     width: '40%'
@@ -43,7 +45,9 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     padding: 14,
     elevation: 2,
-    marginBottom: 25
+    marginBottom: 25,
+    color: '#5c5cd6',
+    backgroundColor: '#fff'
   },
   checkboxContainer: {
     flexDirection: 'row',
@@ -70,7 +74,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     overflow: 'hidden',
     padding: 12,
-    textAlign:'center',
+    textAlign: 'center',
     marginTop: 15
   },
   deleteButton: {
@@ -80,8 +84,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     overflow: 'hidden',
     padding: 12,
-    textAlign:'center',
-    marginTop: 15
+    textAlign: 'center',
+    marginTop: 15,
+    marginBottom: 50
   }
 });
 
@@ -94,10 +99,10 @@ const EditResource = (props) => {
   React.useEffect(() => {
     props.navigation.addListener('focus', () => {
       const item = props.route.params.item;
-      setItem({ 
+      setItem({
         ...item,
         quantity: item.quantity.toString()
-       });
+      });
 
       Geolocation.getCurrentPosition((pos) => {
         setPosition(pos);
@@ -124,12 +129,12 @@ const EditResource = (props) => {
 
     update(payload)
       .then(() => {
-        Alert.alert('Done', 'Your details has been updated.', [{text: 'OK'}]);
+        Alert.alert('Done', 'Your details has been updated.', [{ text: 'OK' }]);
         props.navigation.goBack();
       })
       .catch(err => {
         console.log(err);
-        Alert.alert('ERROR', err.message, [{text: 'OK'}]);
+        Alert.alert('ERROR', err.message, [{ text: 'OK' }]);
       });
   };
 
@@ -152,15 +157,15 @@ const EditResource = (props) => {
 
     remove(payload)
       .then(() => {
-        Alert.alert('Done', 'Your item has been deleted.', [{text: 'OK'}]);
+        Alert.alert('Done', 'Your item has been deleted.', [{ text: 'OK' }]);
         props.navigation.goBack();
       })
       .catch(err => {
         console.log(err);
-        Alert.alert('ERROR', err.message, [{text: 'OK'}]);
+        Alert.alert('ERROR', err.message, [{ text: 'OK' }]);
       });
   };
-  
+
   return (
     <ScrollView style={styles.outerView}>
       <View style={styles.splitView}>
@@ -171,9 +176,9 @@ const EditResource = (props) => {
             value={item.type}
             onValueChange={(t) => setItem({ ...item, type: t })}
             items={[
-                { label: 'Playhome', value: 'Food' },
-                { label: 'Tuition', value: 'Help' },
-                { label: 'Other', value: 'Other' }
+              { label: 'Playhome', value: 'Playhome' },
+              { label: 'Tuition', value: 'Tuition' },
+              { label: 'Other', value: 'Other' }
             ]}
           />
         </View>
@@ -182,7 +187,7 @@ const EditResource = (props) => {
           <TextInput
             style={styles.textInput}
             value={item.quantity}
-            onChangeText={(t) => setItem({ ...item, quantity: t})}
+            onChangeText={(t) => setItem({ ...item, quantity: t })}
             onSubmitEditing={updateItem}
             returnKeyType='send'
             enablesReturnKeyAutomatically={true}
@@ -196,7 +201,7 @@ const EditResource = (props) => {
       <TextInput
         style={styles.textInput}
         value={item.name}
-        onChangeText={(t) => setItem({ ...item, name: t})}
+        onChangeText={(t) => setItem({ ...item, name: t })}
         onSubmitEditing={updateItem}
         returnKeyType='send'
         enablesReturnKeyAutomatically={true}
@@ -207,7 +212,7 @@ const EditResource = (props) => {
       <TextInput
         style={styles.textInput}
         value={item.contact}
-        onChangeText={(t) => setItem({ ...item, contact: t})}
+        onChangeText={(t) => setItem({ ...item, contact: t })}
         onSubmitEditing={updateItem}
         returnKeyType='send'
         enablesReturnKeyAutomatically={true}
@@ -217,7 +222,7 @@ const EditResource = (props) => {
       <TextInput
         style={styles.textInput}
         value={item.description}
-        onChangeText={(t) => setItem({ ...item, description: t})}
+        onChangeText={(t) => setItem({ ...item, description: t })}
         onSubmitEditing={updateItem}
         returnKeyType='send'
         enablesReturnKeyAutomatically={true}
@@ -229,9 +234,9 @@ const EditResource = (props) => {
           {
             (useLocation)
               ?
-              <CheckedIcon height='18' width='18'/>
+              <CheckedIcon height='18' width='18' />
               :
-              <UncheckedIcon height='18' width='18'/>
+              <UncheckedIcon height='18' width='18' />
           }
         </TouchableOpacity>
         <Text style={styles.checkboxLabel}> Use my current location </Text>
@@ -239,7 +244,7 @@ const EditResource = (props) => {
       <TextInput
         style={useLocation ? styles.textInputDisabled : styles.textInput}
         value={item.location}
-        onChangeText={(t) => setItem({ ...item, location: t})}
+        onChangeText={(t) => setItem({ ...item, location: t })}
         onSubmitEditing={updateItem}
         returnKeyType='send'
         enablesReturnKeyAutomatically={true}

@@ -150,7 +150,7 @@ app.get('/api/resource', (req, res) => {
  * 
  * The ID and rev of the resource will be returned if successful
  */
-let types = ["Food", "Other", "Help"]
+let types = ["Playhome", "Tuition", "Other"]
 app.post('/api/resource', (req, res) => {
   if (!req.body.type) {
     return res.status(422).json({ errors: "Type of item must be provided"});
@@ -227,5 +227,5 @@ app.delete('/api/resource/:id', (req, res) => {
 const server = app.listen(port, () => {
    const host = server.address().address;
    const port = server.address().port;
-   console.log(`SolutionStarterKitCooperationServer listening at http://${host}:${port}`);
+   console.log(`CommunityPlayHomeAndTuitionService listening at http://${host}:${port}`);
 });
