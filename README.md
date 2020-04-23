@@ -4,15 +4,12 @@ This solution starter was created by technologists from IBM.
 
 ## Authors
 
-- Henry Nash
-- Va Barbosa
-- Javier Torres
-- Omer Arad
-- JJ Asghar
-- Jody Burks
-- Robert Loredo
-- Debbie Kestin Schildkraut
-- Bruce Weed
+- Naveen Chandra N
+- Manu B N 
+- Kamal Nayan 
+- Bej Chinmoy 
+- Yagateela, Sukanya 
+
 
 ## Contents
 
@@ -34,7 +31,7 @@ There is a growing interest in enabling communities to cooperate among themselve
 
 In times of crisis, such as the 2020 SARS-COV-2 (COVID-19 or "Novel Coronavirus") crisis, while federal and local governments may be rolling out broad programs, cooperation at the local level is usually the most effective way of getting help to where it is most needed as quickly as possible. Traditional social media is one way of communicating within a community, but this is (by its very design) not locally focused, and often not sufficiently structured to enable rapid discovery of help needed.
 
-In the COVID-19 crisis, we have already seen shortages of local food, medical equipment, and other supplies. In addition, the recommended (or required) self-isolation and social distancing measures can compound the problem by preventing people from easily getting to locations with the best stocks of supplies.
+In the COVID-19 crisis, As school and childcare closures become widespread, many working parents are faced with limited or no childcare options. Some may even be compelled to leave younger children with limited supervision, compromising their safety . As application can support these parents in numerous ways ,including through free/paid play home services like tutions, computer classes and drawing classes etc.
 
 What is needed is a solution that empowers communities to easily connect and provide this information to each other.
 
@@ -46,14 +43,15 @@ Creating a chatbot using Watson Assistant can help you address the issues that y
 
 ## The idea
 
-The goal is to provide a mobile application, along with server-side components, that serves as the basis for developers to build out a community cooperation application that addresses local needs for food, equipment, and resources.
-It would allow both "Suppliers" (such as a store or a community member who has produce they can sell or distribute) to make people aware of what the have; and consumers ("Recipients") to locate where these supplies are, and, if necessary, guide them to the appropriate locations to pick them up.
+The goal is to provide a mobile application, along with server-side components, that serves as the basis for developers to build out a community cooperation application that addresses local needs for free/paid play home services like tutions ,computer and drawing classes etc.
+
+It would allow both "AIDES" (such as a teacher or a tutor or any other community member who has capability to educate or care taker) to make people aware of what they have; and users ("Recipients") can locate near by services by using this application through signup.
 
 ## How it works
 
-A Supplier (who may be a regular resident, a small business, a voluntary organization, etc.) that has food, supplies, resources, or other essentials they can provide opens the mobile application and fills out a brief form that indicates what they have. This information is then stored in a database in the IBM Cloud.
+A AIDE (who may be a tutor, a teacher, a instructor , a voluntary organization, etc.) that has free/paid play home services like tutions, computer and drawing classes or others they can provide opens the mobile application and fills out a brief form that indicates what they have skilled. This information is then stored in a database in the IBM Cloud.
 
-A Recipient, who is in need of food, supplies, resources, or other essentials, opens the mobile application and can use the chat interface to locate supplies near them. For instance, they might type "Where can I find bread?" or "Can someone collect my shopping for me?" The mobile application then accesses the database (after first understanding the question via Watson Assistant) and then displays a map showing locally where they can find what they are looking for.
+A Recipient, who is in need of child care services that include home tutions, computer and drawing classes for other essentials, opens the mobile application and can use the chat interface to locate "AIDES" near them. For instance, they might type "Where can I find tutor or care taker?" or "Can someone refer my children care for me?" The mobile applicationthen accesses the database (after first understanding the question via Watson Assistant) and then displays a map showing locally where they can find what they are looking for.
 
 ## Diagrams
 
@@ -204,11 +202,10 @@ To run the mobile application (using the Xcode iOS Simulator or Android Studio E
 With the application running in the simulator/emulator, you should be able to navigate through the various screens:
 
 ![Intro Screen](/images/0-screen-home.png)
-![Donate Screen](/images/1-screen-donate.png)
+![Add playHome Screen](/images/1-screen-addPlayHome.png)
+![list playHome Screen](/images/4-screen-listPlayHome.png)
 ![Search Screen](/images/2-screen-search.png)
-![Chat Screen](/images/5-screen-chat.png)
-![Map1 Screen](/images/3-screen-map.png)
-![Map2 Screen](/images/4-screen-map.png)
+![Map Screen](/images/3-screen-map.png)
 
 ## Resources
 
