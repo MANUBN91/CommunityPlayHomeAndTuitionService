@@ -55,28 +55,28 @@ const tabBarOptions = {
 
 const TabLayout = () => (
   <Tab.Navigator
-    style={{paddingTop: 50}}
+    style={{ paddingTop: 50 }}
     initialRouteName='Home'
     tabBarOptions={tabBarOptions} >
     <Tab.Screen
       name='Home'
       component={Home}
       options={{
-        tabBarIcon: ({color}) => (<HomeIcon fill={color}/>)
+        tabBarIcon: ({ color }) => (<HomeIcon fill={color} />)
       }}
     />
     <Tab.Screen
       name='Add Playhome'
       component={DonateStackLayout}
       options={{
-        tabBarIcon: ({color}) => (<DonateIcon fill={color} />)
+        tabBarIcon: ({ color }) => (<DonateIcon fill={color} />)
       }}
     />
     <Tab.Screen
       name='Search Playhome'
       component={SearchStackLayout}
       options={{
-        tabBarIcon: ({color}) => (<SearchIcon fill={color} />)
+        tabBarIcon: ({ color }) => (<SearchIcon fill={color} />)
       }}
     />
   </Tab.Navigator>
@@ -84,7 +84,7 @@ const TabLayout = () => (
 
 const DonateStackLayout = () => (
   <Stack.Navigator>
-  <Stack.Screen name='My Playhome' component={MyResources} options={DonationsStackOptions} />
+    <Stack.Screen name='My Playhome' component={MyResources} options={DonationsStackOptions} />
     <Stack.Screen name='Add Playhome' component={AddResource} />
     <Stack.Screen name='Edit Playhome' component={EditResource} />
   </Stack.Navigator>
@@ -92,7 +92,10 @@ const DonateStackLayout = () => (
 
 const SearchStackLayout = () => (
   <Stack.Navigator>
-    <Stack.Screen name='Search Playhomes' component={SearchResources} options={ResourcesStackOptions} />
+    <Stack.Screen name='Search Playhomes'
+      component={SearchResources}
+      // options={ResourcesStackOptions}
+    />
     <Stack.Screen name='Chat' component={Chat} />
     <Stack.Screen name='Map' component={Map} />
   </Stack.Navigator>
@@ -113,7 +116,7 @@ const App = () => {
   } else {
     return (
       <NavigationContainer>
-        <TabLayout/>
+        <TabLayout />
       </NavigationContainer>
     );
   }
